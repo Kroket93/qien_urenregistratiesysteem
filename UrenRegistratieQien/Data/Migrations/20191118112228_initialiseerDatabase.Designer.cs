@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UrenRegistratieQien.Data;
 
 namespace UrenRegistratieQien.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191118112228_initialiseerDatabase")]
+    partial class initialiseerDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,10 +84,6 @@ namespace UrenRegistratieQien.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -137,8 +135,6 @@ namespace UrenRegistratieQien.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -277,9 +273,6 @@ namespace UrenRegistratieQien.Data.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("EmployeeId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Month")
                         .HasColumnType("nvarchar(max)");
 
@@ -288,9 +281,44 @@ namespace UrenRegistratieQien.Data.Migrations
 
                     b.HasKey("DeclarationFormId");
 
-                    b.HasIndex("EmployeeId1");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("DeclarationForms");
+                });
+
+            modelBuilder.Entity("UrenRegistratieQien.DatabaseClasses.Employee", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Phone")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EmployeeId");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("UrenRegistratieQien.DatabaseClasses.HourRow", b =>
@@ -335,36 +363,6 @@ namespace UrenRegistratieQien.Data.Migrations
                     b.HasIndex("DeclarationFormId");
 
                     b.ToTable("HourRows");
-                });
-
-            modelBuilder.Entity("UrenRegistratieQien.DatabaseClasses.Employee", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasDiscriminator().HasValue("Employee");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -422,14 +420,7 @@ namespace UrenRegistratieQien.Data.Migrations
                 {
                     b.HasOne("UrenRegistratieQien.DatabaseClasses.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("EmployeeId1");
-                });
-
-            modelBuilder.Entity("UrenRegistratieQien.DatabaseClasses.HourRow", b =>
-                {
-                    b.HasOne("UrenRegistratieQien.DatabaseClasses.DeclarationForm", "DeclarationForm")
-                        .WithMany("HourRows")
-                        .HasForeignKey("DeclarationFormId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -439,6 +430,15 @@ namespace UrenRegistratieQien.Data.Migrations
                     b.HasOne("UrenRegistratieQien.DatabaseClasses.Client", "Client")
                         .WithMany("Employees")
                         .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("UrenRegistratieQien.DatabaseClasses.HourRow", b =>
+                {
+                    b.HasOne("UrenRegistratieQien.DatabaseClasses.DeclarationForm", "DeclarationForm")
+                        .WithMany("HourRows")
+                        .HasForeignKey("DeclarationFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
