@@ -1,5 +1,9 @@
 {
   "version": 1,
+<<<<<<< HEAD
   "dgSpecHash": "aa42VEeXj//ahNW5rTbBE1XrrIsH6oRI0jSOOHTvfub9WgqmB3Agy/xaFvGw/56evkILGn/vSgnHedmfuX3bWw==",
+=======
+  "dgSpecHash": "/dfLWLSlUgDo2j8Ak+vYJQWfvF65ardcxYOCmUJdUSPNJetkfL8+TLdSYjhRSHEBiOvqgnziL8eOgn6fwO0dKA==",
+>>>>>>> feature/koenznFeature
   "success": true
 }

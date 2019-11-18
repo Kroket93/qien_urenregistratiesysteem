@@ -12,7 +12,11 @@ using UrenRegistratieQien.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+<<<<<<< HEAD
 using UrenRegistratieQien.DatabaseClasses;
+=======
+using UrenRegistratieQien.Repositories;
+>>>>>>> feature/koenznFeature
 
 namespace UrenRegistratieQien
 {
@@ -28,6 +32,11 @@ namespace UrenRegistratieQien
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHourRowRepository, HourRowRepository>();
+            services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
+            services.AddSingleton<IDeclarationFormRepository, DeclarationFormRepository>();
+            services.AddSingleton<IClientRepository, ClientRepository>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
