@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Koen\\Documents\\IT\\Qien\\Fase 2 project\\Urenregistratie\\UrenRegistratieQien\\UrenRegistratieQien.csproj": {}
+    "D:\\dev\\qien_urenregistratiesysteem\\UrenRegistratieQien\\UrenRegistratieQien.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Koen\\Documents\\IT\\Qien\\Fase 2 project\\Urenregistratie\\UrenRegistratieQien\\UrenRegistratieQien.csproj": {
+    "D:\\dev\\qien_urenregistratiesysteem\\UrenRegistratieQien\\UrenRegistratieQien.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Koen\\Documents\\IT\\Qien\\Fase 2 project\\Urenregistratie\\UrenRegistratieQien\\UrenRegistratieQien.csproj",
+        "projectUniqueName": "D:\\dev\\qien_urenregistratiesysteem\\UrenRegistratieQien\\UrenRegistratieQien.csproj",
         "projectName": "UrenRegistratieQien",
-        "projectPath": "C:\\Users\\Koen\\Documents\\IT\\Qien\\Fase 2 project\\Urenregistratie\\UrenRegistratieQien\\UrenRegistratieQien.csproj",
-        "packagesPath": "C:\\Users\\Koen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Koen\\Documents\\IT\\Qien\\Fase 2 project\\Urenregistratie\\UrenRegistratieQien\\obj\\",
+        "projectPath": "D:\\dev\\qien_urenregistratiesysteem\\UrenRegistratieQien\\UrenRegistratieQien.csproj",
+        "packagesPath": "C:\\Users\\luuk_\\.nuget\\packages\\",
+        "outputPath": "D:\\dev\\qien_urenregistratiesysteem\\UrenRegistratieQien\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Koen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\luuk_\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
